@@ -4,7 +4,7 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 
-import { ProductComponent } from './product.component';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   { path: "get/:id", component: ProductComponent },
