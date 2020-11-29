@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4205",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,8 @@
     "@angular/router": "~9.1.11",
     "@ngrx/schematics": "^10.0.1",
     "@ngrx/store": "^9.2.0",
+    "bootstrap": "^4.5.3",
+    "bootswatch": "^4.5.3",
     "concurrently": "^5.3.0",
     "json-server": "^0.16.3",
     "rxjs": "~6.5.4",
