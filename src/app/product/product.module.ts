@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     ProductRoutingModule,
-    StoreModule.forFeature(fromProduct.productFeatureKey, fromProduct.reducers, { metaReducers: fromProduct.metaReducers })
+    StoreModule.forFeature(fromProduct.productFeatureKey, fromProduct.productReducer, { metaReducers: fromProduct.metaReducers })
   ],
   providers:[ProductService]
 })
