@@ -11,6 +11,8 @@ import { ProductEditComponent } from './components/product-edit/product-edit.com
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './store/product.effects';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     ProductRoutingModule,
-    StoreModule.forFeature(fromProduct.productFeatureKey, fromProduct.productReducer, { metaReducers: fromProduct.metaReducers })
+    StoreModule.forFeature(fromProduct.productFeatureKey, fromProduct.productReducer, { metaReducers: fromProduct.metaReducers }),
+    EffectsModule.forFeature([ProductEffects])
   ],
   providers:[ProductService]
 })

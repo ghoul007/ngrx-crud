@@ -27,18 +27,18 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts() {
-    const productsObserver = {
-      next: products => {
-        this.store.dispatch(fromActions.loadProductsSuccess({ products }));
-        // this.products = products
-      },
-      error: error => {
-        this.store.dispatch(fromActions.loadProductsFailure({ error }));
-        console.error(error)
-      }
-    };
+    // const productsObserver = {
+    //   next: products => {
+    //     this.store.dispatch(fromActions.loadProductsSuccess({ products }));
+    //     // this.products = products
+    //   },
+    //   error: error => {
+    //     this.store.dispatch(fromActions.loadProductsFailure({ error }));
+    //     console.error(error)
+    //   }
+    // };
 
-    this.productService.getProducts().subscribe(productsObserver);
+    // this.productService.getProducts().subscribe(productsObserver);
     this.products$ = this.store.pipe(select(selectFeatureProperty))
   }
 
