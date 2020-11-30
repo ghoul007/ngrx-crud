@@ -1,10 +1,11 @@
-import { ProductState } from './../../store/index';
+import { ProductState, selectFeatureProperty } from './../../store/index';
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
 import { ProductService } from "../../services/product.service";
 import { Router } from "@angular/router";
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import *  as fromActions from "../../store/product.actions";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-product-list",
@@ -12,7 +13,8 @@ import *  as fromActions from "../../store/product.actions";
   styleUrls: ["./product-list.component.scss"]
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] = [];
+  // products: Product[] = [];
+  products$: Observable<Product[]>
 
   constructor(private productService: ProductService,
     public router: Router,
@@ -28,7 +30,7 @@ export class ProductListComponent implements OnInit {
     const productsObserver = {
       next: products => {
         this.store.dispatch(fromActions.loadProductsSuccess({ products }));
-        this.products = products
+        // this.products = products
       },
       error: error => {
         this.store.dispatch(fromActions.loadProductsFailure({ error }));
@@ -37,6 +39,7 @@ export class ProductListComponent implements OnInit {
     };
 
     this.productService.getProducts().subscribe(productsObserver);
+    this.products$ = this.store.pipe(select(selectFeatureProperty))
   }
 
   deleteProduct(id: number) {

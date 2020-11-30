@@ -44,5 +44,13 @@ export const productReducer = createReducer(
 
 // };
 
+export const selectProductProperty = createFeatureSelector(
+  productFeatureKey,
+);
+export const selectFeatureProperty = createSelector(
+  selectProductProperty,
+  (state: ProductState) => state.products
+);
+
 
 export const metaReducers: MetaReducer<ProductState>[] = !environment.production ? [] : [];
