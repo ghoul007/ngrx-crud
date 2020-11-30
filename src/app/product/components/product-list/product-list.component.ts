@@ -1,4 +1,4 @@
-import { ProductState, selectProducts } from './../../store/index';
+import { ProductState } from './../../store/product.reducer';
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
 import { ProductService } from "../../services/product.service";
@@ -6,6 +6,8 @@ import { Router } from "@angular/router";
 import { select, Store } from '@ngrx/store';
 import *  as fromActions from "../../store/product.actions";
 import { Observable } from 'rxjs';
+import { selectAll } from '../../store/product.reducer';
+import { selectProducts } from '../../store/product.selectors';
 
 @Component({
   selector: "app-product-list",
