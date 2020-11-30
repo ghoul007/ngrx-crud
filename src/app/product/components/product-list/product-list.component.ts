@@ -1,4 +1,4 @@
-import { ProductState, selectFeatureProperty } from './../../store/index';
+import { ProductState, selectProducts } from './../../store/index';
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../models/product";
 import { ProductService } from "../../services/product.service";
@@ -13,8 +13,8 @@ import { Observable } from 'rxjs';
   styleUrls: ["./product-list.component.scss"]
 })
 export class ProductListComponent implements OnInit {
+  products$: any;
   // products: Product[] = [];
-  products$: Observable<Product[]>
 
   constructor(private productService: ProductService,
     public router: Router,
@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit {
     // };
 
     // this.productService.getProducts().subscribe(productsObserver);
-    this.products$ = this.store.pipe(select(selectFeatureProperty))
+    this.products$ = this.store.pipe(select(selectProducts))
   }
 
   deleteProduct(id: number) {

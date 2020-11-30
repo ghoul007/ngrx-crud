@@ -13,3 +13,5 @@ npm i @angular-devkit/schematics
 npm install @ngrx/effects --save
 
 ng g @ngrx/schematics:effect product/store/product  -m product/product.module.ts  --api true --creators --skip-tests
+
+ng add @ngrx/entity

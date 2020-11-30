@@ -11,28 +11,29 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 export const productFeatureKey = 'product';
 
-export interface ProductState {
-  products: Product[];
+export interface ProductState extends EntityState<Product> {
+  // products: Product[];
   error: any;
 
 }
-export const initialState: ProductState = {
-  products: undefined,
+export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>();
+
+export const initialState = adapter.getInitialState({
   error: undefined
-}
+})
 
 
 export const productReducer = createReducer(
   initialState, on(loadProductsSuccess, (state, action) => {
+    return adapter.setAll(action.products, state);
+    // return { products: action.products }
+  }), 
+  on(loadProductsFailure, (state, action) => {
     return {
-      products: action.products
-    }
-  }), on(loadProductsFailure, (state, action) => {
-    return {
-      products: state.products,
       error: action.error
     }
   })
@@ -47,9 +48,14 @@ export const productReducer = createReducer(
 export const selectProductProperty = createFeatureSelector(
   productFeatureKey,
 );
-export const selectFeatureProperty = createSelector(
+export const selectProducts= createSelector(
   selectProductProperty,
-  (state: ProductState) => state.products
+   adapter.getSelectors().selectAll
+);
+
+export const selectError = createSelector(
+  selectProductProperty,
+  (state: ProductState) => state.error
 );
 
 
