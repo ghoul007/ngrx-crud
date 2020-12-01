@@ -3,12 +3,30 @@ import { Update } from '@ngrx/entity';
 import { Product } from '../models/product';
 
 
+// load product
+export const loadProduct = createAction(
+  '[Product/Component] loadProduct ',
+  props<{id: string}>()
+);
+
+export const loadProductSuccess = createAction(
+  '[Product/Effect] load Product Success ',
+  props<{ selectedProduct: Product }>()
+);
+
+export const loadProductFailure = createAction(
+  '[Product/Effect] load Product Failure ',
+  props<{ error: any }>()
+);
+
+
+// load products list
 export const loadProducts = createAction(
-  '[Product/Effect] loadProducts ', 
+  '[Product/Component] loadProducts ',
 );
 
 export const loadProductsSuccess = createAction(
-  '[Product/Effect] load Products Success ', 
+  '[Product/Effect] load Products Success ',
   props<{ products: Product[] }>()
 );
 
@@ -30,7 +48,7 @@ export const addProduct = createAction(
 );
 
 export const addProductsSuccess = createAction(
-  '[Product/Effect] add Product Success ', 
+  '[Product/Effect] add Product Success ',
   props<{ product: Product }>()
 );
 
