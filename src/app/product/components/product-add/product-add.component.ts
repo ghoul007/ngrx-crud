@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { ProductService } from '../../services/product.service';
+import { addProduct } from '../../store/product.actions';
+import { ProductState } from '../../store/product.reducer';
 
 @Component({
   selector: 'app-product-add',
@@ -7,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductAddComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+    private store: Store<ProductState>
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {}
+
+  onSubmit(f: NgForm) {
+    this.store.dispatch(addProduct({ product: f.value }));
   }
-
 }
