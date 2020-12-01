@@ -8,22 +8,35 @@ export const loadProducts = createAction(
 );
 
 export const loadProductsSuccess = createAction(
-  '[Product/Effect] loadProductsSuccess ', 
+  '[Product/Effect] load Products Success ', 
   props<{ products: Product[] }>()
 );
 
 export const loadProductsFailure = createAction(
-  '[Product/Effect]loadProductsFailure ',
+  '[Product/Effect] load Products Failure ',
   props<{ error: any }>()
 );
+
+
 // export const loadProducts = createAction(
 //   '[Product/API] Load Products', 
 //   props<{ products: Product[] }>()
 // );
 
+// Add Product
 export const addProduct = createAction(
   '[Product/API] Add Product',
   props<{ product: Product }>()
+);
+
+export const addProductsSuccess = createAction(
+  '[Product/Effect] add Product Success ', 
+  props<{ product: Product }>()
+);
+
+export const addProductsFailure = createAction(
+  '[Product/Effect] add Product Failure ',
+  props<{ error: any }>()
 );
 
 export const upsertProduct = createAction(
