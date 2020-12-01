@@ -8,7 +8,7 @@ import { Product } from "../models/product";
   providedIn: "root"
 })
 export class ProductService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   baseUrl: string = "http://localhost:3000/products/";
 
@@ -24,8 +24,8 @@ export class ProductService {
     return this.http.get<Product>(this.baseUrl + productId);
   }
 
-  editProduct(model: Product): Observable<Product> {
-    return this.http.put<Product>(this.baseUrl + model.id, model);
+  editProduct(productId: string | number, changes: Partial<Product>): Observable<Product> {
+    return this.http.put<Product>(this.baseUrl + productId, changes);
   }
 
   deleteProduct(productId: number) {

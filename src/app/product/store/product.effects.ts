@@ -3,7 +3,7 @@ import { ProductService } from './../services/product.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, mergeMap, tap } from 'rxjs/operators';
 import * as  ProductActions from './product.actions'
 
 
@@ -44,6 +44,17 @@ export class ProductEffects {
       tap(() => this.router.navigate(["/product/list"]))
     );
   });
+
+  updateProduct$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.updateProduct),
+      concatMap(action =>
+        this.productService.editProduct(action.product.id, action.product.changes)
+      ),
+      tap(() => this.router.navigate(["/product/list"]))
+    );
+  }, { dispatch: false });
+
 
 
   constructor(private actions$: Actions,
