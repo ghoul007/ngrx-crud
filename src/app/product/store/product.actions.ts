@@ -82,15 +82,22 @@ export const updateProducts = createAction(
   props<{ products: Update<Product>[] }>()
 );
 
+// delete product
 export const deleteProduct = createAction(
   '[Product/API] Delete Product',
   props<{ id: string }>()
 );
 
-export const deleteProducts = createAction(
-  '[Product/API] Delete Products',
-  props<{ ids: string[] }>()
+export const deleteProductSuccess = createAction(
+  '[Product/API] Delete Products Success',
+  props<{ id: string }>()
 );
+
+export const deleteProductFailure = createAction(
+  '[Product/Effect] Delete Product Failure ',
+  props<{ error: any }>()
+);
+
 
 export const clearProducts = createAction(
   '[Product/API] Clear Products'

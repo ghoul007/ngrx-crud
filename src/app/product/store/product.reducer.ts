@@ -41,7 +41,7 @@ export const reducer = createReducer(
 
 
   on(ProductActions.loadProductSuccess,
-    (state, action) =>  ({ ...state, selectedProduct: action.selectedProduct })
+    (state, action) => ({ ...state, selectedProduct: action.selectedProduct })
   ),
   on(ProductActions.loadProductFailure,
     (state, action) => {
@@ -66,8 +66,15 @@ export const reducer = createReducer(
   on(ProductActions.deleteProduct,
     (state, action) => adapter.removeOne(action.id, state)
   ),
-  on(ProductActions.deleteProducts,
-    (state, action) => adapter.removeMany(action.ids, state)
+  on(ProductActions.deleteProductSuccess,
+    (state, action) => adapter.removeOne(action.id, state)
+  ),
+  on(ProductActions.deleteProductFailure,
+    (state, action) => {
+      return {
+        ...state, error: action.error
+      }
+    }
   ),
   // on(ProductActions.loadProducts,
   //   (state, action) => adapter.setAll(action.products, state)

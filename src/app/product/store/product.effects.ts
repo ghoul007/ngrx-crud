@@ -56,6 +56,17 @@ export class ProductEffects {
   }, { dispatch: false });
 
 
+  deleteProduct$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.deleteProduct),
+      mergeMap(action =>
+        this.productService.deleteProduct(action.id).pipe(
+          map(product => ProductActions.deleteProductSuccess({ id: action.id })),
+          catchError(error => of(ProductActions.deleteProductFailure({ error }))))
+      ),
+    );
+  });
+
 
   constructor(private actions$: Actions,
     private productService: ProductService,
